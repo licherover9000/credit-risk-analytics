@@ -78,8 +78,14 @@ Real credit decisioning is not "score everything with one model":
 | `powerbi/README.md` | Dashboard spec + DAX measures |
 | `data/` | raw/ and processed/ — gitignored, never committed |
 
-## Headline result
+## Headline results (2007–2018 book, 1.35M completed loans, 19.98% default rate)
 
-*(filled in after analysis — every number below comes from the pipeline, not vibes)*
+> **Segment finding:** grade F–G × debt-consolidation × low-income-decile borrowers default at 50–58% — up to **2.89× the book average**.
+>
+> **Cutoff decision:** declining PD ≥ 25% (gradient boosting, out-of-time AUC 0.713 / Gini 0.426) preserves a **71% approval rate** while cutting the approved book's default rate from **21.7% → 15.1%**, saving **₹3.1 Cr of credit loss per ₹100 Cr disbursed**.
+>
+> **Vintage story:** post-crisis vintages (2009–11) defaulted at 12–13% by month 36; quality deteriorated monotonically to 20.2% for 2016 vintages as origination scaled.
+>
+> **Counterintuitive:** income-*verified* loans default at 23.9% vs 14.7% for unverified — verification was triggered by riskiness (selection effect), a caution against reading operational flags as causal.
 
-> Identified borrower segment (grade E–G × small-business purpose × bottom income decile) with **X.X× the portfolio default rate**; a policy cutoff at PD ≥ X% preserves ~XX% approval rate while reducing expected credit loss by **₹X.X Cr per ₹100 Cr disbursed**.
+Full decision rationale: [docs/risk_memo.md](docs/risk_memo.md).
