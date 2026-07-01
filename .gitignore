@@ -7,6 +7,9 @@ data/processed/
 *.duckdb
 *.duckdb.wal
 
+# Generated outputs (rebuilt by the pipeline)
+reports/
+
 # Python
 .venv/
 __pycache__/

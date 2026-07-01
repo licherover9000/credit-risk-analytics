@@ -28,7 +28,7 @@ def main() -> None:
 
     for script in sorted(SQL_DIR.glob("*.sql")):
         t0 = time.time()
-        print(f"→ {script.name} ...", flush=True)
+        print(f"-> {script.name} ...", flush=True)
         statements = script.read_text(encoding="utf-8")
         # execute the file; the last statement's result set (the sanity
         # SELECT at the bottom of each script) gets printed as a table

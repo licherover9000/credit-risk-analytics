@@ -60,9 +60,12 @@ WITH seg AS (
     GROUP BY grade, purpose, income_decile
 )
 SELECT
-    *,
+    seg.*,
+    -- lift vs the TRUE book default rate (loan-weighted), not the
+    -- unweighted mean of segment rates — those differ materially
     default_rate
-      / NULLIF(AVG(default_rate) OVER (), 0)        AS lift_vs_book,
+      / NULLIF((SELECT AVG(is_default) FROM features.loan_features), 0)
+                                                    AS lift_vs_book,
     RANK() OVER (ORDER BY default_rate DESC)        AS risk_rank
 FROM seg
 WHERE n_loans >= 200;   -- suppress noise segments

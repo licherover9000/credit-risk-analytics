@@ -18,7 +18,8 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORTS = ROOT / "reports"
-USD_TO_INR = 83.0  # Lending Club amounts are USD; report impact in ₹
+# loss_per_100cr is loss ÷ disbursed × 100 — a ratio, so it reads the same
+# in ₹ Cr per ₹100 Cr disbursed regardless of the source currency (USD)
 
 
 def main() -> None:

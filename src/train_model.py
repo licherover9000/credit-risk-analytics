@@ -70,7 +70,7 @@ def main() -> None:
     # ---- Out-of-time split ----
     cutoff = df["issue_date"].quantile(0.8)
     train, test = df[df["issue_date"] <= cutoff], df[df["issue_date"] > cutoff]
-    print(f"Train ≤ {cutoff.date()} ({len(train):,}) | Test > ({len(test):,})")
+    print(f"Train <= {cutoff.date()} ({len(train):,}) | Test > ({len(test):,})")
 
     pre = ColumnTransformer([
         ("num", Pipeline([("imp", SimpleImputer(strategy="median")),
@@ -81,7 +81,9 @@ def main() -> None:
     models = {
         "logistic_baseline": Pipeline([
             ("pre", pre),
-            ("clf", LogisticRegression(max_iter=2000, class_weight="balanced")),
+            # no class_weight="balanced": it inflates predicted probabilities,
+            # and a PD model needs calibrated probabilities, not just ranking
+            ("clf", LogisticRegression(max_iter=2000)),
         ]),
         "gradient_boosting": Pipeline([
             ("pre", pre),
@@ -114,7 +116,7 @@ def main() -> None:
     out.to_parquet(REPORTS / "test_scores.parquet")
     (REPORTS / "model_metrics.txt").write_text(
         "\n".join(lines) + f"\n\nchampion: {best_name}\n", encoding="utf-8")
-    print(f"\nChampion: {best_name}. Scores → reports/test_scores.parquet")
+    print(f"\nChampion: {best_name}. Scores -> reports/test_scores.parquet")
 
 
 if __name__ == "__main__":
