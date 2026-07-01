@@ -14,6 +14,12 @@ if (-not $hasToken) {
     Write-Error "No Kaggle credentials in $env:USERPROFILE\.kaggle. Create a token at kaggle.com -> Settings -> API."
 }
 
+# Remove any existing file first — the Kaggle CLI "resumes" onto whatever
+# is at the target path (e.g. the synthetic smoke-test file), producing a
+# corrupt splice of two gzip streams.
+$target = Join-Path $raw "accepted_2007_to_2018Q4.csv.gz"
+if (Test-Path $target) { Remove-Item $target -Force }
+
 & "$root\.venv\Scripts\kaggle.exe" datasets download wordsforthewise/lending-club `
     -f "accepted_2007_to_2018Q4.csv.gz" -p $raw
 
