@@ -72,7 +72,8 @@ Real credit decisioning is not "score everything with one model":
 | Path | What it is |
 |---|---|
 | `sql/` | The SQL pipeline, numbered in execution order |
-| `src/` | Python: pipeline runner, model training, business economics |
+| `src/` | Python: pipeline runner, model training, business economics, chart generation |
+| `notebooks/01_eda.ipynb` | Executed EDA with commentary — renders directly on GitHub |
 | `docs/data_dictionary.md` | Field definitions + the leakage blacklist |
 | `docs/risk_memo.md` | Risk-committee memo (cutoff decision, ₹ impact) |
 | `powerbi/README.md` | Dashboard spec + DAX measures |
@@ -88,4 +89,16 @@ Real credit decisioning is not "score everything with one model":
 >
 > **Counterintuitive:** income-*verified* loans default at 23.9% vs 14.7% for unverified — verification was triggered by riskiness (selection effect), a caution against reading operational flags as causal.
 
-Full decision rationale: [docs/risk_memo.md](docs/risk_memo.md).
+Full decision rationale: [docs/risk_memo.md](docs/risk_memo.md) · Full EDA with commentary: [notebooks/01_eda.ipynb](notebooks/01_eda.ipynb)
+
+### The cutoff decision
+![Approval vs risk tradeoff](docs/img/cutoff_tradeoff.png)
+
+### Vintage deterioration, 2009–2016
+![Vintage curves](docs/img/vintage_curves.png)
+
+### Where risk concentrates
+![Segment heatmap](docs/img/segment_heatmap.png)
+
+### PD drives loss; LGD is flat
+![PD and LGD by grade](docs/img/pd_lgd_by_grade.png)
