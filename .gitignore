@@ -16,8 +16,9 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
-# Power BI local files
+# Power BI local files (ignore working copies, but keep the published dashboard)
 *.pbix
+!powerbi/credit_risk_dashboard.pbix
 
 # OS
 Thumbs.db
