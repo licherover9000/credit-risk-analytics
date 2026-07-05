@@ -6,6 +6,24 @@ End-to-end credit risk pipeline on 2M+ Lending Club loans: **SQL** (staging, win
 
 ---
 
+## 📊 Power BI Dashboard
+
+A 4-page executive risk report built on the pipeline's Parquet exports. The `.pbix` lives in [`powerbi/credit_risk_dashboard.pbix`](powerbi/credit_risk_dashboard.pbix) — open it in Power BI Desktop to interact.
+
+**Portfolio Overview** — KPI cards + default rate by grade, vintage year, and disbursed by purpose:
+
+![Portfolio overview](docs/img/dashboard_overview.png)
+
+**Segment Risk Heatmap** — default rate by grade × income decile; the red corner (grade F–G, low income) is the 2.9× pocket:
+
+![Segment heatmap](docs/img/dashboard_heatmap.png)
+
+**Cutoff Simulator** — approval-vs-default tradeoff curve with the recommended PD ≥ 25% cutoff and its business metrics:
+
+![Cutoff simulator](docs/img/dashboard_cutoff.png)
+
+---
+
 ## Architecture
 
 ```
